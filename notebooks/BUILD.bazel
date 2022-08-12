@@ -1,0 +1,20 @@
+load("//tools/jupyter:defs.bzl", "jupyter_notebook", "jupyter_notebook_image")
+load("@deps//:requirements.bzl", "requirement")
+
+jupyter_notebook(
+    name="notebook",
+    deps=[
+        requirement("torch"),
+        "//core/hello",
+    ],
+    notebook = "hello.ipynb",
+)
+
+jupyter_notebook_image(
+    name = "image",
+    notebook = "hello.ipynb",
+    deps = [
+        requirement("torch"),
+        "//core/hello",
+    ],
+)

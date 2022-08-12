@@ -1,0 +1,20 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@deps//:requirements.bzl", "requirement")
+load("@io_bazel_rules_docker//python3:image.bzl", "py3_image")
+
+py_binary(
+    name = "main",
+    srcs = ["main.py"],
+    deps = [
+        requirement("torch"),
+    ],
+)
+
+py3_image(
+    name = "image",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [
+        requirement("torch"),
+    ],
+)

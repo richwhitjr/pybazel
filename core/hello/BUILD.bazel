@@ -1,0 +1,30 @@
+load("@rules_python//python:defs.bzl", "py_library", "py_test")
+load("@rules_python//python:packaging.bzl", "py_package", "py_wheel")
+load("@deps//:requirements.bzl", "requirement")
+
+py_library(
+    name = "hello",
+    srcs = ["hello.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        requirement("numpy"),
+    ],
+)
+
+py_test(
+    name = "test",
+    srcs = ["test.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":hello",
+        requirement("pytest"),
+    ],
+)
+
+py_wheel(
+    name = "hello_library",
+    distribution = "hello_library",
+    python_tag = "py3",
+    version = "0.0.1",
+    deps = [":hello"],
+)
