@@ -6,7 +6,7 @@ py_binary(
     name = "main",
     srcs = ["main.py"],
     deps = [
-        requirement("tensorflow-gpu"),
+        requirement("tensorflow"),
     ],
 )
 
@@ -15,6 +15,6 @@ py3_image(
     srcs = ["main.py"],
     main = "main.py",
     deps = [
-        requirement("tensorflow-gpu"),
+        requirement("tensorflow"),
     ],
 )
